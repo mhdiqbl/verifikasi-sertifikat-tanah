@@ -7,7 +7,7 @@ if (!isset($_SESSION["login"])) {
   exit;
 }
 include '../conn/koneksi.php';
-$result = mysqli_query($conn, "SELECT * FROM pegawai WHERE id_pegawai = '$id'");
+$result = mysqli_query($conn, "SELECT * FROM tb_admin WHERE username = '$id'");
 if (mysqli_num_rows($result)===1) {
   $row = mysqli_fetch_assoc($result);
 }

@@ -19,22 +19,25 @@ if (isset($_POST["login"])) {
 			// set session
             $_SESSION['id'] = $row['username'];
             $_SESSION['nama'] = $row['nama'];
+            $_SESSION['role'] = $row['id_hak_akses'];
 			$_SESSION['login'] = true;
 			header("Location: admin/index_admin.php");
+            exit;
         }
     }
     if (mysqli_num_rows($pegawai)===1) {
 		
 		//cek password 
-		$row = mysqli_fetch_assoc($result);
+		$row = mysqli_fetch_assoc($pegawai);
         if ($row['id_hak_akses']=='01') {
-        if (password_verify($password, $row["passwords"])){
+        if (password_verify($password, $row["password"])){
 			// set session
             $_SESSION['id'] = $row['username'];
             $_SESSION['nama'] = $row['nama'];
             $_SESSION['role'] = $row['id_hak_akses'];
 			$_SESSION['login'] = true;
-			header("Location: users/kakan/index_kakan.php");
+			header("Location: user/kakan/index_kakan.php");
+            exit;
         }
         }
     }
