@@ -303,7 +303,7 @@ function tambah_pegawai($data){
 	$tp_lahir = htmlspecialchars($data["tp_lahir"]);	
 	$tgl_lahir = htmlspecialchars($data["tgl_lahir"]);
 	$id_hak_akses = htmlspecialchars($data["id_hak_akses"]);
-	$password = 12345;
+	$password = '12345';
 
 	$gambar = upload_pegawai();
 	if (!$gambar) {

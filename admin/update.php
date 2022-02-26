@@ -48,10 +48,9 @@ if (isset($_POST["ubah"])) {
     <title>SISTEM WARKAH BPN ACEH UTARA</title>
 
     <!-- Select 2 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
-
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script src="../vendors/jquery/dist/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -163,7 +162,7 @@ if (isset($_POST["ubah"])) {
 											<label class="col-form-label col-md-4 col-sm-3 label-align" for="id_hak">Tipe Hak
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<select class="form-control col-5" name="id_hak" value="<?= $bkt["id_hak"] ?>">
+												<select class="form-control col-5" id="hak" name="id_hak" value="<?= $bkt["id_hak"] ?>">
                           <?php
                             $hak = query("SELECT * FROM hak_sertifikat");
                           ?>
@@ -177,7 +176,7 @@ if (isset($_POST["ubah"])) {
 											<label for="middle-name" for="id_desa" class="col-form-label col-md-4 col-sm-3 label-align">Desa</label>
 											<div class="col-md-6 col-sm-6 ">
                         <!-- <input class="form-control col-5" name="id_desa" list="desa" value="<?= $bkt["id_desa"] ?>""> -->
-												<select class="form-control col-5" id="id_desa" name="id_desa" value="<?= $bkt["id_desa"] ?>">
+												<select class="form-control col-5" id="desa" name="id_desa" value="<?= $bkt["id_desa"] ?>">
                           <?php
                             $desa = query("SELECT * FROM desa");
                           ?>
@@ -213,10 +212,16 @@ if (isset($_POST["ubah"])) {
         <!-- /footer content -->
       </div>
     </div>
-
-    <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <script src="../vendors/jquery/dist/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#desa').select2();
+});
+</script>
+<script>
+    $(document).ready(function() {
+    $('#hak').select2();
+});
+</script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->

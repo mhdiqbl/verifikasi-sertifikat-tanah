@@ -7,7 +7,7 @@ if (isset($_POST["login"])) {
     $password = $_POST["password"];
     
     $result = mysqli_query($conn, "SELECT * FROM tb_admin WHERE username = '$username'");
-    // $result = mysqli_query($conn, "SELECT * FROM pegawai WHERE username = '$username'");
+    $pegawai = mysqli_query($conn, "SELECT * FROM pegawai WHERE id_pegawai = '$username'");
 
     //cek username
 	if (mysqli_num_rows($result)===1) {
@@ -21,9 +21,24 @@ if (isset($_POST["login"])) {
             $_SESSION['nama'] = $row['nama'];
 			$_SESSION['login'] = true;
 			header("Location: admin/index_admin.php");
-			exit;
-        }    
+        }
     }
+    if (mysqli_num_rows($pegawai)===1) {
+		
+		//cek password 
+		$row = mysqli_fetch_assoc($result);
+        if ($row['id_hak_akses']=='01') {
+        if (password_verify($password, $row["passwords"])){
+			// set session
+            $_SESSION['id'] = $row['username'];
+            $_SESSION['nama'] = $row['nama'];
+            $_SESSION['role'] = $row['id_hak_akses'];
+			$_SESSION['login'] = true;
+			header("Location: users/kakan/index_kakan.php");
+        }
+        }
+    }
+    
     $error = true;
 }
 
